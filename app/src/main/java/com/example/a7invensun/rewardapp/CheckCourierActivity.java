@@ -50,7 +50,6 @@ public class CheckCourierActivity extends BaseActivity implements AdapterView.On
             String deliveryCompanyNo = CompanyCodeUtil.getDeliveryCompanyNo(cardNumber);
             Log.e(TAG, "onItemClick: "+deliveryCompanyNo );
 
-
         }
     }
 
