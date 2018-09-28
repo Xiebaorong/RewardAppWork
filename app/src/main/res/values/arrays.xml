@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="delivery_company">
+        <item>顺丰</item>
+        <item>申通</item>
+        <item>圆通</item>
+        <item>中通</item>
+        <item>韵达</item>
+        <item>百世汇通、百世快递</item>
+        <item>百世物流</item>
+        <item>EMS</item>
+        <item>宅急送</item>
+        <item>京东</item>
+        <item>德邦</item>
+    </string-array>
+
+    <string-array name="delivery_company_id">
+        <item>shunfeng</item>
+        <item>shentong</item>
+        <item>yuantong</item>
+        <item>zhongtong</item>
+        <item>yunda</item>
+        <item>huitongkuaidi</item>
+        <item>baishiwuliu</item>
+        <item>ems</item>
+        <item>zhaijisong</item>
+        <item>jd</item>
+        <item>debangwuliu</item>
+    </string-array>
+
+
+</resources>

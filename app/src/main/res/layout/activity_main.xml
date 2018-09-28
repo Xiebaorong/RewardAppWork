@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <EditText
+            android:id="@+id/word_edit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:text="@string/save"
+            android:layout_marginLeft="10dp"
+            android:onClick="saveWordClick"
+            android:background="@drawable/btn_background_checkcourier"
+            android:textColor="@color/colorWhite"
+            />
+    </LinearLayout>
+
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/reward"
+        android:layout_below="@id/word_edit"
+        android:onClick="startAlipayClick"
+        android:background="@drawable/btn_background_checkcourier"
+        android:textColor="@color/colorWhite"
+        android:layout_marginHorizontal="25dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_background_checkcourier"
+        android:onClick="resetClick"
+        android:text="@string/reset"
+        android:textColor="@color/colorWhite"
+        android:layout_marginLeft="10dp"
+        />
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="默认列表"
+            android:textSize="25sp"
+            android:gravity="center_vertical"
+            />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/sex_rg"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="谢@"
+            android:id="@+id/xie_rb"
+            android:textSize="20sp"
+            />
+        <RadioButton
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="贺瑶"
+            android:textSize="20sp"
+            android:id="@+id/he_rb"/>
+    </RadioGroup>
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="@string/confirm"
+        android:onClick="confirmClick"
+        android:background="@drawable/btn_background_checkcourier"
+        android:textColor="@color/colorWhite"
+        android:layout_marginLeft="10dp"
+        />
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.a7invensun.rewardapp.DoorActivity">
+
+    <Button
+        android:id="@+id/btn_toMain_boor"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:background="@drawable/btn_background_checkcourier"
+        android:onClick="toMainClick"
+        android:text="领取红包"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp"
+        />
+    <Button
+        android:id="@+id/btn_toCheckCourier_boor"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:background="@drawable/btn_background_checkcourier"
+        android:onClick="toCheckCourierClick"
+        android:text="快递查询"
+        android:textColor="@color/colorWhite"
+        android:layout_toRightOf="@id/btn_toMain_boor"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="25dp"
+        />
+</RelativeLayout>
