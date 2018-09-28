@@ -15,28 +15,43 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a7invensun.rewardapp.util.SharedPreferencesUtil;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.BindView;
+
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
     private EditText wordEdit;
     private ClipboardManager manager;
     private static final String PACKANG_NAME = "com.eg.android.AlipayGphone";
     private RadioGroup mSexRg;
     private RadioButton xieRb,heRb;
-
+//    @BindView(R.id.tv_left_header)
+//    TextView tvLeftHeader;
+//    @BindView(R.id.tv_center_header)
+//    TextView tvCenterHeader;
+//    @BindView(R.id.tv_right_header)
+//    TextView tvRightHeader;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        init();
+    public int getLayout() {
+        return R.layout.activity_main;
     }
 
-    private void init() {
+    @Override
+    protected void OnActCreate(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void initView() {
+        tvLeftHeader.setText("返回");
+        tvCenterHeader.setText("领取红包");
+        tvLeftHeader.setOnClickListener(this);
         wordEdit = findViewById(R.id.word_edit);
         mSexRg = findViewById(R.id.sex_rg);
         xieRb =  this.findViewById(R.id.xie_rb);
@@ -57,6 +72,17 @@ public class MainActivity extends AppCompatActivity {
             heRb.setChecked(true);
         }
     }
+
+    @Override
+    protected int switchoverAnimationIn() {
+        return RIGHT;
+    }
+
+    @Override
+    protected int switchoverAnimationOut() {
+        return LEFT;
+    }
+
 
     public void startAlipayClick(View view) {
         startAlipay();
@@ -145,4 +171,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tv_left_header:
+                finish();
+                break;
+        }
+    }
 }

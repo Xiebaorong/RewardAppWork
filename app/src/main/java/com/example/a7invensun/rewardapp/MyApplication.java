@@ -3,6 +3,7 @@ package com.example.a7invensun.rewardapp;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.a7invensun.rewardapp.util.OkhttpUtil;
 import com.example.a7invensun.rewardapp.util.SharedPreferencesUtil;
 
 /**
@@ -20,5 +21,6 @@ public class MyApplication extends Application {
         super.onCreate();
         mContext = getApplicationContext();
         SharedPreferencesUtil.getInstance().initSp(mContext);
+        OkhttpUtil.getInstance().initOkHttp();
     }
 }

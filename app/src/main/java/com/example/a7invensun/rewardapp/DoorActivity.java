@@ -4,18 +4,21 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+
+import butterknife.BindView;
 
 public class DoorActivity extends BaseActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_door);
-    }
+//    @BindView(R.id.tv_left_header)
+//    TextView tvLeftHeader;
+//    @BindView(R.id.tv_center_header)
+//    TextView tvCenterHeader;
+//    @BindView(R.id.tv_right_header)
+//    TextView tvRightHeader;
 
     @Override
     public int getLayout() {
-        return 0;
+        return R.layout.activity_door;
     }
 
     @Override
@@ -25,7 +28,7 @@ public class DoorActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        tvCenterHeader.setText("导航页");
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.util.List;
  */
 
 public class DeliveryMessages {
+    private String message;
     //派送单号
     private String nu;
     //快递公司名称
@@ -21,5 +22,61 @@ public class DeliveryMessages {
         private String time;
         //详细信息内容
         private String context;
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
+        }
+
+        public String getContext() {
+            return context;
+        }
+
+        public void setContext(String context) {
+            this.context = context;
+        }
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getNu() {
+        return nu;
+    }
+
+    public void setNu(String nu) {
+        this.nu = nu;
+    }
+
+    public String getCom() {
+        return com;
+    }
+
+    public void setCom(String com) {
+        this.com = com;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public List<Message> getData() {
+        return data;
+    }
+
+    public void setData(List<Message> data) {
+        this.data = data;
     }
 }

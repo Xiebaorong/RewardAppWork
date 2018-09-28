@@ -4,12 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-
+    <include layout="@layout/header"
+        android:id="@+id/header_main"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal"
         android:gravity="center"
+        android:layout_marginHorizontal="15dp"
         >
         <EditText
             android:id="@+id/word_edit"
@@ -49,7 +51,7 @@
         android:onClick="resetClick"
         android:text="@string/reset"
         android:textColor="@color/colorWhite"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         />
 
     <LinearLayout
@@ -58,6 +60,7 @@
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:layout_marginHorizontal="15dp"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -74,7 +77,10 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginHorizontal="15dp"
+
+        >
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,6 +104,6 @@
         android:onClick="confirmClick"
         android:background="@drawable/btn_background_checkcourier"
         android:textColor="@color/colorWhite"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         />
 </LinearLayout>

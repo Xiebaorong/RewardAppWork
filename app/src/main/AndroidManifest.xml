@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.a7invensun.rewardapp">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/money"
+        android:icon="@mipmap/appimage"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -13,7 +13,9 @@
         <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".CheckCourierActivity" />
+        <activity android:name=".CheckCourierActivity"
+            android:windowSoftInputMode="stateHidden"
+            />
         <activity android:name=".DoorActivity" android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -10,14 +10,22 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity {
     private static final int MSG_WHAT_SHOWTOAST = 1;
     public Context mContext;
+    @BindView(R.id.tv_left_header)
+    TextView tvLeftHeader;
+    @BindView(R.id.tv_center_header)
+    TextView tvCenterHeader;
+    @BindView(R.id.tv_right_header)
+    TextView tvRightHeader;
     public static final int LEFT = 1;
     public static final int RIGHT = 2;
     public static final int TOP = 3;
