@@ -1,4 +1,4 @@
-package com.example.a7invensun.rewardapp;
+package com.example.a7invensun.rewardapp.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.a7invensun.rewardapp.R;
 import com.example.a7invensun.rewardapp.model.DeliveryMessages;
 
 import java.util.List;
@@ -55,15 +56,15 @@ public class ShowMsgAdapter extends BaseAdapter{
         holder.tvShowcontextShowcourier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                particularContext(mList.get(position).getContext());
+                particularContext(mList.get(position).getTime(),mList.get(position).getContext());
             }
         });
         return view;
     }
 
-    private void particularContext(String context) {
+    private void particularContext(String time, String context) {
         AlertDialog dialog = new AlertDialog.Builder(mContext)
-                .setTitle("详细内容")//设置对话框的标题
+                .setTitle("详细内容--"+time)//设置对话框的标题
                 .setMessage(context)//设置对话框的内容
                 //设置对话框的按钮
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {

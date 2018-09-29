@@ -6,6 +6,7 @@
     >
     <include layout="@layout/header"
         android:id="@+id/header_main"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -84,7 +85,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="谢@"
+            android:text="默认1"
             android:id="@+id/xie_rb"
             android:textSize="20sp"
             />
@@ -92,7 +93,7 @@
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="贺瑶"
+            android:text="默认2"
             android:textSize="20sp"
             android:id="@+id/he_rb"/>
     </RadioGroup>

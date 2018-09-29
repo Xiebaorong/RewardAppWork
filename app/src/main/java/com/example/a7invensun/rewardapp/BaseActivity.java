@@ -2,6 +2,7 @@ package com.example.a7invensun.rewardapp;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,23 +10,33 @@ import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.a7invensun.rewardapp.callback.INetEvent;
+import com.example.a7invensun.rewardapp.receiver.NetStateReceiver;
+import com.example.a7invensun.rewardapp.util.StatusBarUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseActivity extends AppCompatActivity {
+import static com.example.a7invensun.rewardapp.util.NetUtil.NETWORK_NONE;
+
+public abstract class BaseActivity extends AppCompatActivity implements INetEvent{
+
     private static final int MSG_WHAT_SHOWTOAST = 1;
     public Context mContext;
+    public static INetEvent iNetEvent;
     @BindView(R.id.tv_left_header)
     TextView tvLeftHeader;
     @BindView(R.id.tv_center_header)
     TextView tvCenterHeader;
     @BindView(R.id.tv_right_header)
     TextView tvRightHeader;
+
     public static final int LEFT = 1;
     public static final int RIGHT = 2;
     public static final int TOP = 3;
@@ -33,6 +44,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public static final int SCALE = 5;
     public static final int FADE = 6;
     private ProgressDialog progressDialog;
+    private NetStateReceiver netStateReceiver;
     private Toast toast;
     private Unbinder bind;
     private Handler baseHandler = new Handler() {
@@ -56,14 +68,28 @@ public abstract class BaseActivity extends AppCompatActivity {
             setContentView(getLayout());
         }
         bind = ButterKnife.bind(this);
+        iNetEvent = this;
+        netStateReceiver = new NetStateReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        registerReceiver(netStateReceiver,filter);
+
         OnActCreate(savedInstanceState);
         initView();
+
+        //状态栏
+        StatusBarUtils.setWindowStatusBarColor(this,R.color.colorBlack);
         if (switchoverAnimationIn() != 0) {
             activityIn(switchoverAnimationIn());
         }
-
-
     }
+
+    @Override
+    public void onNetChange(int netWorkState) {
+        onNetChanged(netWorkState);
+    }
+
+    protected abstract void onNetChanged(int netWorkState);
 
     private void activityOut(int state) {
         switch (state) {
@@ -154,6 +180,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         bind.unbind();
+        unregisterReceiver(netStateReceiver);
         super.onDestroy();
 
     }
@@ -170,6 +197,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            unregisterReceiver(netStateReceiver);
            baseHandler.removeCallbacksAndMessages("");
         }
         return super.onKeyDown(keyCode, event);

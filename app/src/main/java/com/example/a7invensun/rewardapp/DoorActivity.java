@@ -3,18 +3,26 @@ package com.example.a7invensun.rewardapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import butterknife.BindView;
 
+import static com.example.a7invensun.rewardapp.util.NetUtil.NETWORK_NONE;
+
 public class DoorActivity extends BaseActivity {
-//    @BindView(R.id.tv_left_header)
+    private static final String TAG = "DoorActivity";
+    //    @BindView(R.id.tv_left_header)
 //    TextView tvLeftHeader;
 //    @BindView(R.id.tv_center_header)
 //    TextView tvCenterHeader;
-//    @BindView(R.id.tv_right_header)
-//    TextView tvRightHeader;
+
+
+    @Override
+    protected void onNetChanged(int netWorkState) {
+        Log.e(TAG, "onNetChanged: "+netWorkState);
+    }
 
     @Override
     public int getLayout() {

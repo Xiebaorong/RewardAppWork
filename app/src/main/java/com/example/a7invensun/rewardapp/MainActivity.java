@@ -24,6 +24,8 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.example.a7invensun.rewardapp.util.NetUtil.NETWORK_NONE;
+
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
     private EditText wordEdit;
@@ -31,12 +33,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final String PACKANG_NAME = "com.eg.android.AlipayGphone";
     private RadioGroup mSexRg;
     private RadioButton xieRb,heRb;
-//    @BindView(R.id.tv_left_header)
-//    TextView tvLeftHeader;
-//    @BindView(R.id.tv_center_header)
-//    TextView tvCenterHeader;
-//    @BindView(R.id.tv_right_header)
-//    TextView tvRightHeader;
+
+    @Override
+    protected void onNetChanged(int netWorkState) {
+
+    }
+
     @Override
     public int getLayout() {
         return R.layout.activity_main;
@@ -161,13 +163,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             SharedPreferencesUtil.getInstance().saveOtherMessage("clickId","1");
             wordEdit.setText(R.string.word_xie);
 
-            Toast.makeText(MainActivity.this,"谢@",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"已选“默认1”",Toast.LENGTH_SHORT).show();
         }
         if (sex == R.id.he_rb){
             SharedPreferencesUtil.getInstance().saveOtherMessage("word",this.getString(R.string.word_he));
             SharedPreferencesUtil.getInstance().saveOtherMessage("clickId","2");
             wordEdit.setText(R.string.word_he);
-            Toast.makeText(MainActivity.this,"已选贺瑶",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"已选“默认2”",Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_hint_prompts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="网络连接不可用"
+        android:drawableLeft="@mipmap/warning"
+        android:gravity="center_vertical"
+        android:drawablePadding="12dp"
+        android:padding="10dp"
+        android:background="@color/colorGrey"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        android:visibility="gone"
+        />
+</android.support.constraint.ConstraintLayout>
