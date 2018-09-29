@@ -15,48 +15,72 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
-    <Spinner
-        android:id="@+id/snr_company_checkcourier"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_below="@id/prompts_checkcourier"
-        android:layout_margin="15dp"
-        android:entries="@array/delivery_company"
-        >
-
-    </Spinner>
-
-    <EditText
-        android:id="@+id/et_couriernumber_checkcourier"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/snr_company_checkcourier"
-        android:layout_margin="15dp"
-        android:hint="请输入快递单号"
-        />
-
-    <Button
-        android:id="@+id/btn_findcourier_checkcourier"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="查询"
-        android:layout_below="@id/et_couriernumber_checkcourier"
-        android:layout_marginHorizontal="25dp"
-        android:background="@drawable/btn_background_checkcourier"
-        android:textColor="@color/colorWhite"
-        android:onClick="findCourierClick"
-        />
-
-
-    <ListView
-        android:id="@+id/lv_showmessage_checkcourier"
+    <FrameLayout
+        android:id="@+id/fl_getfragment_checkcourier"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/btn_findcourier_checkcourier"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="20dp"
-        android:divider="@color/colorPrimary"
-        android:dividerHeight="3dp"
+        android:layout_below="@id/prompts_checkcourier"
+        android:visibility="gone"
+        ></FrameLayout>
+    <RelativeLayout
+        android:id="@+id/rl_shownumber_checkcourier"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/prompts_checkcourier"
         >
-    </ListView>
+
+        <TextView
+            android:id="@+id/tv_company_checkcourier"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="快递公司："
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            />
+        <Spinner
+            android:id="@+id/snr_company_checkcourier"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+
+            android:entries="@array/delivery_company"
+            android:layout_toRightOf="@id/tv_company_checkcourier"
+            >
+        </Spinner>
+        <EditText
+            android:id="@+id/et_couriernumber_checkcourier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/snr_company_checkcourier"
+            android:layout_margin="15dp"
+            android:hint="请输入快递单号"
+            />
+
+        <Button
+            android:id="@+id/btn_findcourier_checkcourier"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="查询"
+            android:layout_below="@id/et_couriernumber_checkcourier"
+            android:layout_marginHorizontal="25dp"
+            android:background="@drawable/btn_background_checkcourier"
+            android:textColor="@color/colorWhite"
+            android:onClick="findCourierClick"
+            />
+
+
+        <ListView
+            android:id="@+id/lv_showmessage_checkcourier"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/btn_findcourier_checkcourier"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="20dp"
+            android:divider="@color/colorPrimary"
+            android:dividerHeight="3dp"
+            >
+        </ListView>
+    </RelativeLayout>
+
+
+
 </RelativeLayout>

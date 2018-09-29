@@ -44,7 +44,7 @@ public abstract class BaseActivity extends AppCompatActivity implements INetEven
     public static final int SCALE = 5;
     public static final int FADE = 6;
     private ProgressDialog progressDialog;
-    private NetStateReceiver netStateReceiver;
+    public NetStateReceiver netStateReceiver;
     private Toast toast;
     private Unbinder bind;
     private Handler baseHandler = new Handler() {
@@ -179,10 +179,8 @@ public abstract class BaseActivity extends AppCompatActivity implements INetEven
 
     @Override
     protected void onDestroy() {
-        bind.unbind();
-        unregisterReceiver(netStateReceiver);
         super.onDestroy();
-
+        bind.unbind();
     }
 
     @Override

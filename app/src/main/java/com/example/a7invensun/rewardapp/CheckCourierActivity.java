@@ -1,16 +1,22 @@
 package com.example.a7invensun.rewardapp;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.a7invensun.rewardapp.adapter.ShowMsgAdapter;
 import com.example.a7invensun.rewardapp.callback.LoadCallBack;
+import com.example.a7invensun.rewardapp.fragment.ScanFragment;
 import com.example.a7invensun.rewardapp.model.DeliveryMessages;
 import com.example.a7invensun.rewardapp.util.AppUrl;
 import com.example.a7invensun.rewardapp.util.CompanyCodeUtil;
@@ -39,13 +45,22 @@ public class CheckCourierActivity extends BaseActivity implements AdapterView.On
     ListView lvShowmessageCheckcourier;
     @BindView(R.id.tv_hint_prompts)
     TextView tvHintPrompts;
+    @BindView(R.id.rl_shownumber_checkcourier)
+    RelativeLayout rlShownumberCheckcourier;
+    @BindView(R.id.fl_getfragment_checkcourier)
+    FrameLayout flGetfragmentCheckcourier;
     private List<DeliveryMessages.Message> dataList;
     private int netState;
+    private boolean isScan;
+    private FragmentManager manager;
+    private FragmentTransaction transaction;
+    private Fragment scanFragment;
+
     @Override
     protected void onNetChanged(int netWorkState) {
-        if (netWorkState==NETWORK_NONE){
+        if (netWorkState == NETWORK_NONE) {
             tvHintPrompts.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             tvHintPrompts.setVisibility(View.GONE);
         }
     }
@@ -57,16 +72,18 @@ public class CheckCourierActivity extends BaseActivity implements AdapterView.On
 
     @Override
     protected void OnActCreate(Bundle savedInstanceState) {
-
     }
 
     @Override
     protected void initView() {
         tvLeftHeader.setText("返回");
         tvCenterHeader.setText("快递查询");
+        tvRightHeader.setText("使用扫码");
         tvLeftHeader.setOnClickListener(this);
+        tvRightHeader.setOnClickListener(this);
         snrCompanyCheckcourier.setOnItemSelectedListener(this);
         etCouriernumberCheckcourierl.setOnFocusChangeListener(this);
+
     }
 
     @Override
@@ -87,18 +104,12 @@ public class CheckCourierActivity extends BaseActivity implements AdapterView.On
             }
             String deliveryCompanyNo = CompanyCodeUtil.getDeliveryCompanyNo(cardNumber);
             Log.e(TAG, "onItemClick: " + deliveryCompanyNo);
-//            Delivery delivery = new Delivery(deliveryCompanyNo,num);
-//            String json = new Gson().toJson(delivery);
-//            String customer ="EADF9ED0BD8D14A38CB70DE97E9EE6EF";
-//            String key = "NzBUmWuE2594";
             showProgressDialog("正在查询中。。。");
-            if ( netState!=NETWORK_NONE) {
+            if (netState != NETWORK_NONE) {
                 Map<String, String> params = new HashMap<>();
                 params.put("type", deliveryCompanyNo);
                 params.put("postid", num);
-
                 OkhttpUtil.getInstance().newRequest(AppUrl.FINDURL, OkhttpUtil.HttpMethodType.POST, params, new LoadCallBack<String>(CheckCourierActivity.this) {
-
                     @Override
                     public void onSuccess(Call call, Response response, String s) {
                         Log.e(TAG, "onSuccess: " + response.code() + "------" + s);
@@ -119,10 +130,7 @@ public class CheckCourierActivity extends BaseActivity implements AdapterView.On
 
                                     }
                                 });
-
-
                             }
-
                         }
                     }
 
@@ -133,9 +141,7 @@ public class CheckCourierActivity extends BaseActivity implements AdapterView.On
                 });
 
             }
-
-
-        }else {
+        } else {
             sendToast("请输入快递单号");
         }
     }
@@ -156,16 +162,54 @@ public class CheckCourierActivity extends BaseActivity implements AdapterView.On
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_left_header:
                 finish();
                 break;
+            case R.id.tv_right_header:
+                manager = getSupportFragmentManager();
+                transaction = manager.beginTransaction();
+                hideFragment(transaction);
+                if (isScan) {
+                    isScan = false;
+                    tvRightHeader.setText("使用扫码 ");
+                    rlShownumberCheckcourier.setVisibility(View.VISIBLE);
+                    flGetfragmentCheckcourier.setVisibility(View.GONE);
+                } else {
+                    isScan = true;
+                    tvRightHeader.setText("输入单号");
+                    rlShownumberCheckcourier.setVisibility(View.GONE);
+                    flGetfragmentCheckcourier.setVisibility(View.VISIBLE);
+                    scanFragment = new ScanFragment();
+                    transaction.replace(R.id.fl_getfragment_checkcourier, scanFragment);
+                    transaction.commit();
+                }
+                break;
+        }
+    }
+
+    /**
+     * 移除Fragment
+     *
+     * @param transaction
+     */
+    private void hideFragment(FragmentTransaction transaction) {
+        if (scanFragment != null) {
+            //transaction.hide(f2);
+            transaction.remove(scanFragment);
+            scanFragment = null;
         }
     }
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-        Log.e(TAG, "onFocusChange: "+hasFocus );
+        Log.e(TAG, "onFocusChange: " + hasFocus);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(netStateReceiver);
     }
 }
